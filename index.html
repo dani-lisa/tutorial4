@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Tutorial 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f6f3fb;
+      color: #2d1e40;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+     }
+
+    h2 {
+      background-color: #e5d4f5;
+      color: #5e2b97;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      display: inline-block;
+     }
+
+    .navbar {
+      margin: 20px auto;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+    }
+
+    .navbar button {
+      margin: 0 8px;
+      padding: 10px 15px;
+      background-color: #8e44ad;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar button:hover {
+      background-color: #732d91;
+    }
+
+    #datetime {
+      display: inline-block;
+      margin: 0 10px;
+      font-weight: bold;
+      color: #5c4a7c;
+    }
+
+    .image-section {
+      display: none;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px auto;
+      gap: 15px;
+      max-width: 90%;
+    }
+
+    .image-section img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #c7b3e0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .image-section img:hover {
+      transform: scale(1.03);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>JavaScript Tutorial 4</h2>
+
+    <div class="navbar">
+      <button onclick="toggleSection('viewSection')">My View</button>
+      <button onclick="toggleSection('houseSection')">My House</button>
+      <button onclick="toggleSection('hobbySection')">My Hobby</button>
+      <span id="datetime"></span>
+      <button onclick="window.print()">Print Page</button>
+    </div>
+
+    <!-- My View Section -->
+    <div class="image-section" id="viewSection">
+      <img src="myview.jpg" alt="View 1">
+      <img src="myview2.jpg" alt="View 2">
+    </div>
+
+    <!-- My House Section -->
+    <div class="image-section" id="houseSection">
+      <img src="myhouse.jpg" alt="House 1">
+      <img src="myhouse2.jpg" alt="House 2">
+    </div>
+
+    <!-- My Hobby Section -->
+    <div class="image-section" id="hobbySection">
+      <img src="myhobby.jpg" alt="Hobby 1">
+      <img src="myhobby2.jpg" alt="Hobby 2">
+    </div>
+  </div>
+
+  <script>
+    // Live Malaysia time
+    function updateTime() {
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Kuala_Lumpur',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour12: false
+      };
+      const formatter = new Intl.DateTimeFormat('en-GB', options);
+      document.getElementById('datetime').textContent = formatter.format(now) + ' (Malaysia Time)';
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Toggle section visibility
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.style.display = (section.style.display === "none" || section.style.display === "") ? "flex" : "none";
+    }
+  </script>
+
+</body>
+</html>
